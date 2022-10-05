@@ -8,11 +8,12 @@ class Maybe {
             return this;
         }
         const value = fn(this.value);
-        return new Maybe(value);
+        // return new Maybe(value)
+        return value;
     }
 }
 let firestFriendGender = new Maybe("William")
-    .bind(s => s.toUpperCase())
-    .bind(s => s.split("").reverse().join(""))
-    .bind(s => s + "!");
+    .bind(s => new Maybe(s.toUpperCase()))
+    .bind(s => new Maybe(s.split("").reverse().join("")))
+    .bind(s => new Maybe(s + "!"));
 console.log(firestFriendGender.value);
